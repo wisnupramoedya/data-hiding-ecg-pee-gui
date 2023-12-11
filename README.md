@@ -38,3 +38,11 @@ To run the program by Python
 ```
 python main.py
 ```
+
+## Build the file
+
+To build the file, run this. Ensure that you have `pyinstaller`.
+
+```
+pyinstaller --onefile -n {app_name} main.py
+```
