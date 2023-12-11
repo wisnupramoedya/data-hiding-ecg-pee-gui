@@ -2,14 +2,12 @@ import numpy as np
 
 
 def preproccess_signal(original_data: np.ndarray) -> np.ndarray:
-    return (np.round(original_data * 1000).flatten()).astype(np.int64)
+    return (np.round(original_data * 1000.0).flatten()).astype(np.int64)
 
 
 def postproccess_signal(original_data: np.ndarray) -> np.ndarray:
-    # Divide each element by 1000 and reshape to a 2D array
-    output_array = original_data / 1000.0  # Divide by 1000 to get decimal values
-    output_array = output_array.reshape(-1, 1)  # Reshape to a single column
-
+    output_array = original_data / 1000.0
+    output_array = output_array.reshape(-1, 1)
     return output_array
 
 

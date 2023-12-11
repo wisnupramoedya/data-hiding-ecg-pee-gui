@@ -7,7 +7,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from models.signal import Signal
 from utils.path import split_file_path_without_extension, split_path_for_saving
 from utils.model import get_model
-from utils.proccessor import preproccess_signal, string_to_bits, postproccess_signal
+from utils.proccessor import preproccess_signal, string_to_bits, bits_to_string, postproccess_signal
 from utils.thread import EmbedThread, ExtractThread
 import wfdb
 
@@ -19,6 +19,8 @@ class MyWindow(QMainWindow, Ui_MainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setupUi(self)
+        self.setWindowTitle("StegaPEER")
+
         self.set_embed_widget()
         self.set_extract_widget()
         self.set_model_combo_box()
@@ -284,7 +286,7 @@ class MyWindow(QMainWindow, Ui_MainWindow):
             original_signal)
         self.x_plot_ecg_signal_to_frame_2()
 
-        self.xResultLabel.setText(f'Result:\n{secret_data}')
+        self.xResultLabel.setText(f'Result:\n{bits_to_string(secret_data)}')
 
         self.extractButton.setText('Start Extraction')
         self.extractButton.setDisabled(False)
